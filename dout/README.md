@@ -1,11 +1,10 @@
-Find the IP given a host pattern and the domain 
-===============================================
+Dig IPs
+=======
 
 
 Usage:  
 -----------
-dout domain host_pattern 
-
+	dout domain host_pattern 
 
 How it works: 
 -------------- 
