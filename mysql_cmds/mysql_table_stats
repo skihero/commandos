@@ -1,0 +1,48 @@
+
+This was pulled from the r-bloggers site, 
+don't have the link 
+
+mysql> SELECT TABLE_SCHEMA,SUM(DATA_LENGTH) SCHEMA_LENGTH FROM information_schema.TABLES WHERE TABLE_SCHEMA!='information_schema' GROUP BY TABLE_SCHEMA ; 
++--------------+---------------+
+| TABLE_SCHEMA | SCHEMA_LENGTH |
++--------------+---------------+
+| mysql        |        481714 | 
+| puppet       |        229376 | 
++--------------+---------------+
+2 rows in set (0.03 sec)
+
+mysql> SELECT TABLE_SCHEMA,TABLE_NAME,TABLE_ROWS,DATA_LENGTH FROM information_schema.TABLES WHERE TABLE_SCHEMA!='information_schema'
+    -> ;
++--------------+---------------------------+------------+-------------+
+| TABLE_SCHEMA | TABLE_NAME                | TABLE_ROWS | DATA_LENGTH |
++--------------+---------------------------+------------+-------------+
+| mysql        | columns_priv              |          0 |           0 | 
+| mysql        | db                        |          3 |        1752 | 
+| mysql        | func                      |          0 |           0 | 
+| mysql        | help_category             |         36 |       20916 | 
+| mysql        | help_keyword              |        404 |       79588 | 
+| mysql        | help_relation             |        850 |        7650 | 
+| mysql        | help_topic                |        484 |      371472 | 
+| mysql        | host                      |          0 |           0 | 
+| mysql        | proc                      |          0 |           0 | 
+| mysql        | procs_priv                |          0 |           0 | 
+| mysql        | tables_priv               |          0 |           0 | 
+| mysql        | time_zone                 |          0 |           0 | 
+| mysql        | time_zone_leap_second     |          0 |           0 | 
+| mysql        | time_zone_name            |          0 |           0 | 
+| mysql        | time_zone_transition      |          0 |           0 | 
+| mysql        | time_zone_transition_type |          0 |           0 | 
+| mysql        | user                      |          6 |         336 | 
+| puppet       | fact_names                |         77 |       16384 | 
+| puppet       | fact_values               |        150 |       16384 | 
+| puppet       | hosts                     |          2 |       16384 | 
+| puppet       | inventory_facts           |          0 |       16384 | 
+| puppet       | inventory_nodes           |          0 |       16384 | 
+| puppet       | param_names               |         14 |       16384 | 
+| puppet       | param_values              |        238 |       16384 | 
+| puppet       | puppet_tags               |         44 |       16384 | 
+| puppet       | resource_tags             |        748 |       65536 | 
+| puppet       | resources                 |         88 |       16384 | 
+| puppet       | source_files              |          8 |       16384 | 
++--------------+---------------------------+------------+-------------+
+28 rows in set (0.01 sec)
