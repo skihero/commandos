@@ -1,0 +1,5 @@
+
+
+/bin/echo -e "1i\nFrom:$MAILFROM\nSubject:[$DT] Post data archive for
+$HOSTNAME\nTo:$MAIL\n\n.\nwq\n" |ed $LOGFILE 2>/dev/null
+/bin/cat ${LOGFILE} | /usr/sbin/sendmail ${MAIL}
