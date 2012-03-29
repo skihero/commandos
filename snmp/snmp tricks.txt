@@ -1,0 +1,34 @@
+In the process of creating a custom mib found these nice flags. 
+
+
+To check the OID of the loaded mib using the name 
+
+[root@griffin mibs]# snmptranslate -Of HOST-RESOURCES-MIB:hrSystem
+
+.iso.org.dod.internet.mgmt.mib-2.host.hrSystem
+
+
+This gives the numeric id of the object 
+[root@griffin mibs]# snmptranslate -Ofn HOST-RESOURCES-MIB:hrSystem
+.1.3.6.1.2.1.25.1
+
+
+
+
+To see it in a tree format 
+[root@griffin mibs]# snmptranslate -Of -Tp HOST-RESOURCES-MIB:hrSystem
++--hrSystem(1)
+   |
+   +-- -R-- TimeTicks hrSystemUptime(1)
+   +-- -RW- String    hrSystemDate(2)
+   |        Textual Convention: DateAndTime
+   |        Size: 8 | 11
+   +-- -RW- Integer32 hrSystemInitialLoadDevice(3)
+   |        Range: 1..2147483647
+   +-- -RW- String    hrSystemInitialLoadParameters(4)
+   |        Textual Convention: InternationalDisplayString
+   |        Size: 0..128
+   +-- -R-- Gauge     hrSystemNumUsers(5)
+   +-- -R-- Gauge     hrSystemProcesses(6)
+   +-- -R-- Integer32 hrSystemMaxProcesses(7)
+            Range: 0..2147483647
