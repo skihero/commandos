@@ -1,6 +1,7 @@
-t the usage of the logger module 
-# FIX:  not working
+#!/usr/bin/python
 
+# Test the usage of the logger module 
+# TODO: Explore the extend options.
 
 import sys
 import os
@@ -80,9 +81,9 @@ def mylog():
    proglog.addHandler(console)
 
    print "Trying to print" 
-   proglog.info ( _("prog_name (version %s)") % __version__)
+   proglog.info ( "prog_name version ")
    print " After info print" 
-   proglog.info ( _("prog_name (version %s)") % __version__)
+   proglog.info ( "Trying again prog_name version ")
    print
 
    proglog.log(logging.VERBOSE, "Something verbose " )
@@ -91,6 +92,7 @@ def mylog():
    # Close all log files and perform any cleanup
    logging.shutdown()
 
+   print "after shutdown" 
 
 if __name__ == '__main__':
     try:
