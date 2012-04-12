@@ -1,5 +1,8 @@
 #!/bin/bash
 # God I like to send mails 
+# This script backus up a directory and
+# Sends a mail with the log 
+
 
 #set -x 
 
