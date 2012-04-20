@@ -1,0 +1,12 @@
+
+
+fpm -s dir -t rpm -n "puppetcontrol"  -v 1.0   --prefix /usr/sbin/ puppet_control/
+fpm -s dir  -t rpm  -n "java_ct" -v 1.0  --prefix /usr/local/ java/
+
+
+Edit the spec file 
+fpm -e -s dir  -t rpm  -n "java_ct" -v 1.0  --prefix /usr/local/ java/ 
+
+
+
+
