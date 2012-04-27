@@ -13,6 +13,13 @@ usage(){
 	echo "Usage: $0 appname war_file version release"
 	exit 1
 }
+
+# Exit code status 
+#  1  usaga
+#  2  rpmbuild not installed 
+#  3  rpmdevtools not installed 
+#  4  Java repack jar not disabled
+# 
  
 # 
 # Need params
@@ -38,11 +45,22 @@ if [ ! -f "/usr/bin/rpmbuild" ]; then
 fi 
 
 # Check if rpm is installed 
-if [ ! -f "/usr/bin/rpmbuild" ]; then 
+if [ ! -f "/usr/bin/rpmdev-setuptree" ]; then 
 	echo "Install rpmdevtools " 
 	exit 3
 fi 
 
+
+# Disable /usr/lib/rpm/redhat/brp-java-repack-jars 
+REPACK_COUNT=`wc -l /usr/lib/rpm/redhat/brp-java-repack-jars|awk '{print $1}' ` 
+
+
+if [ ${REPACK_COUNT} -gt 5 ]; then 
+	echo "Should disable /usr/lib/rpm/redhat/brp-java-repack-jars" 
+	echo " Run \" > /usr/lib/rpm/redhat/brp-java-repack-jars\" " 
+	exit 4 
+
+fi 
 # This will setup the rpmbuild tree 
 
 /usr/bin/rpmdev-setuptree 
@@ -94,8 +112,8 @@ fi
 
 
 # Do the clean up here 
+rm -rf ${SOURCES}/${WAR_FILE}
 rm -rf ${RPM_BUILD_ROOT}
 
 exit 0 	
-
 
