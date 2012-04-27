@@ -4,31 +4,31 @@
 #
 #
 
-#set -x 
+set -x 
 
 #
 # Usage 
 #  
 usage(){
-	echo "Usage: $0 appname war_file "
+	echo "Usage: $0 appname war_file version release"
 	exit 1
 }
  
 # 
 # Need params
 # 
-[[ $# -eq 0 ]] && usage
+[[ $# -ne 4 ]] && usage
 
 
 SPEC="${HOME}/rpmbuild/SPECS"
+SOURCES="${HOME}/rpmbuild/SOURCES"
 APP_NAME="$1"
 WAR_FILE="$2"
 DT="`date +"%Y_%m_%d_%H_%M"`"
+VERSION="$3" 
+RELEASE="$4"
 
-# This will be populated in the 
-# spec file 
-RPM_BUILD_ROOT="/tmp/rpmbuilder_${DT}"
-
+#RPM_BUILD_ROOT="/tmp/rpmbuilder_${DT}"
 
 
 # Check if rpmbuild is installed 
@@ -43,15 +43,24 @@ if [ ! -f "/usr/bin/rpmbuild" ]; then
 	exit 3
 fi 
 
+# This will setup the rpmbuild tree 
+
+/usr/bin/rpmdev-setuptree 
+
+# Copy the war file to rpmbuild/SOURCES
+cp -v ${WAR_FILE} ${SOURCES}
+
 # Touch the spec file 
 touch "${SPEC}/${APP_NAME}_${DT}.spec"
 
+
 # Generate the spec file. 
-cat << EOF >> "${SPEC}/${APP_NAME}_${DT}.spec"
+(
+cat <<EOF
 Summary: ${APP_NAME} Tomcat application
 Name: ${APP_NAME}
-Version: 1
-Release: 0
+Version: ${VERSION}
+Release: ${RELEASE}
 Group: CLTP
 License: GPL 
 Packager: CI_Chain
@@ -59,23 +68,23 @@ Packager: CI_Chain
 ${APP_NAME} war file rpm
 
 %install 
-mkdir -p ${RPM_BUILD_ROOT}/usr/local/release3/tomcat/webapps/wouldbe
-cp -r ../SOURCES/${WAR_FILE}  ${RPM_BUILD_ROOT}/usr/local/release3/tomcat/webapps/wouldbe
+mkdir -p \${RPM_BUILD_ROOT}/usr/local/release3/tomcat/webapps/wouldbe
+cp -r ../SOURCES/${WAR_FILE}  \${RPM_BUILD_ROOT}/usr/local/release3/tomcat/webapps/wouldbe
 
 %files 
 %attr(745, root, -) /usr/local/release3/tomcat/webapps/wouldbe/${WAR_FILE}
 
 %post 
 mv /usr/local/release3/tomcat/webapps/wouldbe/${WAR_FILE} /usr/local/release3/tomcat/webapps/
+# END_OF_SPEC
+EOF
+ 
+) > "${SPEC}/${APP_NAME}_${DT}.spec"
 
-EOF 
+RPM_BUILD_ROOT="/tmp/rpmbuilder_${DT}"
 
-
-# This will build the build tree 
-
-/usr/bin/rpmdev-setuptree 
-#/usr/bin/rpmbuild -ba --buildroot /tmp/rpmbuilder  "${SPEC}/${APP_NAME}_${DT}.spec"
-/usr/bin/rpmbuild -ba  "${SPEC}/${APP_NAME}_${DT}.spec"
+/usr/bin/rpmbuild -ba --buildroot ${RPM_BUILD_ROOT}  "${SPEC}/${APP_NAME}_${DT}.spec"
+#/usr/bin/rpmbuild -ba  "${SPEC}/${APP_NAME}_${DT}.spec"
 
 if [ $? -ne 0 ]; 
 then 
@@ -88,4 +97,5 @@ fi
 rm -rf ${RPM_BUILD_ROOT}
 
 exit 0 	
+
 
