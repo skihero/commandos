@@ -1,5 +1,4 @@
 
-
 fpm -s dir -t rpm -n "puppetcontrol"  -v 1.0   --prefix /usr/sbin/ puppet_control/
 fpm -s dir  -t rpm  -n "java_ct" -v 1.0  --prefix /usr/local/ java/
 
@@ -8,5 +7,7 @@ Edit the spec file
 fpm -e -s dir  -t rpm  -n "java_ct" -v 1.0  --prefix /usr/local/ java/ 
 
 
+Edit and add a post install script 
+fpm -e --post-install after_jdk_install.sh  -s dir  -t rpm  -n "jdk" -v 1.6 --iteration 0_06 --prefix /usr/local/  jdk1.6.0_06/ 
 
 
