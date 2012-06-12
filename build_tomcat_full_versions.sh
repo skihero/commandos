@@ -1,7 +1,9 @@
 #!/bin/bash 
 #
-# Read the war and produce rpm
+# Read the tomcat dir and produce rpm
 #
+# BUGS: Full path needed for DEST_PATH
+# 
 #
 
 #set -x 
