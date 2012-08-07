@@ -29,6 +29,8 @@ class SpamCheck (object):
 
 	def __create__(self): 
 		self.bf = BloomFilter(10000000, 0.01, 'filter.bloom')
+		# Let us initalize the first time
+		self.spam("000")
 		# Generate the filter from a file
 		with open("bad_numbers.txt") as f:
 		    for nums in f:
@@ -36,11 +38,11 @@ class SpamCheck (object):
 			    self.ilog.debug(".")
 
 	def spam(self, bad_entity): 
-		self.bf.add(bad_entity) 
 		with open("bad_numbers.txt","a+") as f: 
 			f.write(bad_entity) 
 			f.write("\n")
 			self.ilog.info("Added bad entry to file")
+		self.bf.add(bad_entity) 
 		
 	  	 
 	def isSpam(self, entity): 
