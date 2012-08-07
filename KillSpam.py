@@ -29,7 +29,7 @@ class SpamCheck (object):
 
 	def __create__(self): 
 		self.bf = BloomFilter(10000000, 0.01, 'filter.bloom')
-		# Let us initalize the first time
+		# Let us initalize the first time, it hacky but ok
 		self.spam("000")
 		# Generate the filter from a file
 		with open("bad_numbers.txt") as f:
