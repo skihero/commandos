@@ -1,5 +1,6 @@
-[kishore@sa-kishore-k ~/haproxy_stuff]$ cat test_db.py 
 #!/usr/bin/python
+""" Test script to serve as db populating agent """ 
+
 
 import MySQLdb
 import random
