@@ -1,0 +1,2 @@
+#!/bin/bash
+echo -v "download.finance.yahoo.com/d/quotes.csv?e=.csv&f=c4l1&s=USDINR=X" | nc -w 30 download.finance.yahoo.com 80
