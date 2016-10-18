@@ -1,0 +1,4 @@
+sudo apt-get install libncurses5-dev -y
+
+  gcc 391.c -lncurses
+
