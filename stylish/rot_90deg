@@ -1,0 +1,9 @@
+
+@namespace url(http://www.w3.org/1999/xhtml);
+
+@-moz-document domain("s3.amazonaws.com") {
+img
+
+  {  image-orientation: 90deg};
+
+}
