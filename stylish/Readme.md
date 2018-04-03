@@ -6,4 +6,4 @@ Used along with the Moz Stylish plugin to:
 	![invert sample](invert.png "invert")
 
  * Ability to change an image's orientation for images in a specified domain.
-
+        ![orientation sample ](img_orientation_loc.png "img_orientation" )
