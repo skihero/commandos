@@ -9,6 +9,7 @@ TAG POS=1 TYPE=DIV ATTR=ID:imacros-highlight-div
 TAG POS=1 TYPE=SELECT FORM=ID:mturk_form ATTR=ID:store_phone_select CONTENT=%yes
 TAG POS=1 TYPE=SELECT FORM=ID:mturk_form ATTR=ID:store_address_select CONTENT=%yes
 TAG POS=1 TYPE=SELECT FORM=ID:mturk_form ATTR=ID:purchase_date_select CONTENT=%yes
+TAG POS=1 TYPE=SELECT FORM=ID:mturk_form ATTR=ID:purchase_time_select CONTENT=%yes
 TAG POS=1 TYPE=SELECT FORM=ID:mturk_form ATTR=ID:total_select CONTENT=%yes
 TAG POS=1 TYPE=SELECT FORM=ID:mturk_form ATTR=ID:has_sku_select CONTENT=%yes
 TAG POS=1 TYPE=INPUT:TEXT FORM=ID:mturk_form ATTR=ID:store_name CONTENT=
