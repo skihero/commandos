@@ -1,0 +1,6 @@
+Initialize the shelve db values with initialize.py 
+
+Execute quantum.py to know the target amount per day
+
+Execute earnings.py to update the earnings so as to reduce the target amount 
+
