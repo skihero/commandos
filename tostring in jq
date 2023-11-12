@@ -1,0 +1,18 @@
+Jq error:  Cannot index boolean with string.    
+
+Solution: Using tostring and parentheses to index
+
+For a JSON like
+
+{ 
+  "jobid": "abc",
+  "held" : true
+}
+
+Filter
+
+(.held|tostring) + "|" +.jobid
+
+Result
+
+"true|abc" 
